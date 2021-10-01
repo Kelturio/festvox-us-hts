@@ -1,0 +1,34 @@
+From: Sergio Oller <sergioller@gmail.com>
+Subject: Add compatibility with Festival-2.4
+ This patch with the HTSmulti2single.py script allows one to use
+ the cmu_us_slt_arctic_hts voice with festival-2.4
+--- a/lib/voices/us/cmu_us_slt_arctic_hts/festvox/cmu_us_slt_arctic_hts.scm
++++ b/lib/voices/us/cmu_us_slt_arctic_hts/festvox/cmu_us_slt_arctic_hts.scm
+@@ -105,26 +105,7 @@
+ 
+ (set! cmu_us_slt_arctic_hts::hts_engine_params
+       (list
+-       (list "-md" (path-append hts_data_dir "dur.pdf"))
+-       (list "-mm" (path-append hts_data_dir "mgc.pdf"))
+-       (list "-mf" (path-append hts_data_dir "lf0.pdf"))
+-       (list "-td" (path-append hts_data_dir "tree-dur.inf"))
+-       (list "-tm" (path-append hts_data_dir "tree-mgc.inf"))
+-       (list "-tf" (path-append hts_data_dir "tree-lf0.inf"))
+-       (list "-dm1" (path-append hts_data_dir "mgc.win1"))
+-       (list "-dm2" (path-append hts_data_dir "mgc.win2"))
+-       (list "-dm3" (path-append hts_data_dir "mgc.win3"))
+-       (list "-df1" (path-append hts_data_dir "lf0.win1"))
+-       (list "-df2" (path-append hts_data_dir "lf0.win2"))
+-       (list "-df3" (path-append hts_data_dir "lf0.win3"))
+-       (list "-cm" (path-append hts_data_dir "gv-mgc.pdf"))
+-       (list "-cf" (path-append hts_data_dir "gv-lf0.pdf"))
+-       (list "-em" (path-append hts_data_dir "tree-gv-mgc.inf"))
+-       (list "-ef" (path-append hts_data_dir "tree-gv-lf0.inf"))
+-       (list "-k" (path-append hts_data_dir "gv-switch.inf"))
+-       '("-s" 32000.0)
+-       '("-p" 160.0)
+-       '("-a" 0.45)
++       (list "-m" (path-append hts_data_dir "cmu_us_slt_arctic_hts.htsvoice"))
+        '("-g" 0.0)
+        '("-b" 0.0)
+        '("-u" 0.5)

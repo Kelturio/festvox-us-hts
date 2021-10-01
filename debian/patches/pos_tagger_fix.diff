@@ -1,0 +1,16 @@
+From: Sergio Oller <sergioller@gmail.com>
+Subject: Fix setting all POS tagger properties
+ Switching among different languages may lead to have this variables not
+ set to the proper English values.
+--- a/lib/voices/us/cmu_us_slt_arctic_hts/festvox/cmu_us_slt_arctic_tagger.scm
++++ b/lib/voices/us/cmu_us_slt_arctic_hts/festvox/cmu_us_slt_arctic_tagger.scm
+@@ -40,6 +40,9 @@
+ (define (cmu_us_slt_arctic::select_tagger)
+   "(cmu_us_slt_arctic::select_tagger)
+ Set up the POS tagger English."
++  (set! pos_p_start_tag "punc")
++  (set! pos_pp_start_tag "nn")
++  (set! pos_map nil)
+   (set! pos_lex_name "english_poslex")
+   (set! pos_ngram_name 'english_pos_ngram)
+   (set! pos_supported t)

@@ -1,0 +1,20 @@
+Source: festvox-us-slt-hts
+Section: sound
+Priority: optional
+Maintainer: Debian TTS Team <tts-project@alioth-lists.debian.net>
+Uploaders: Sergio Oller <sergioller@gmail.com>, Samuel Thibault <sthibault@debian.org>
+Build-Depends: debhelper-compat (= 12), python3
+Rules-Requires-Root: no
+Standards-Version: 4.5.0
+Homepage: http://festvox.org/
+Vcs-Git: https://salsa.debian.org/tts-team/festvox-us-slt-hts.git
+Vcs-Browser: https://salsa.debian.org/tts-team/festvox-us-slt-hts
+
+Package: festvox-us-slt-hts
+Architecture: all
+Depends: festlex-cmu, festlex-poslex, festival, ${misc:Depends}
+Provides: festival-voice
+Description: : US English voice for Festival. 32kHz sample rate, HTS
+ This is a US English female HTS voice for festival that uses
+ 32kHz samples. Using festival, this package allows one to transform
+ written text to speech spoken with a high quality female voice.

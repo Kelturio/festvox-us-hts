@@ -1,0 +1,4 @@
+lib/voices/us/cmu_us_slt_arctic_hts/festvox/* usr/share/festival/voices/us/cmu_us_slt_arctic_hts/festvox
+lib/voices/us/cmu_us_slt_arctic_hts/hts/feat.list usr/share/festival/voices/us/cmu_us_slt_arctic_hts/hts
+lib/voices/us/cmu_us_slt_arctic_hts/hts/cmu_us_slt_arctic_hts.htsvoice usr/share/festival/voices/us/cmu_us_slt_arctic_hts/hts
+

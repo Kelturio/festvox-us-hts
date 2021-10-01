@@ -1,0 +1,19 @@
+From: Sergio Oller <sergioller@gmail.com>
+Subject: Proclaim the voice to the festival system.
+--- a/lib/voices/us/cmu_us_slt_arctic_hts/festvox/cmu_us_slt_arctic_hts.scm
++++ b/lib/voices/us/cmu_us_slt_arctic_hts/festvox/cmu_us_slt_arctic_hts.scm
+@@ -182,5 +182,14 @@
+   (set! current-voice 'cmu_us_slt_arctic_hts)
+ )
+ 
++(proclaim_voice
++ 'cmu_us_slt_arctic_hts
++ '((language english)
++   (gender female)
++   (dialect american)
++   (description
++    "This voice provides an American English female voice using
++     HTS.")))
++
+ (provide 'cmu_us_slt_arctic_hts)
+ 

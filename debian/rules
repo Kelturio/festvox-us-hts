@@ -1,0 +1,9 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+override_dh_auto_build-indep:
+	python3 debian/HTSmulti2single.py lib/voices/us/cmu_us_slt_arctic_hts/hts 32000 160 0.45 \
+	 lib/voices/us/cmu_us_slt_arctic_hts/hts/cmu_us_slt_arctic_hts.htsvoice
+
+%:
+	dh $@
