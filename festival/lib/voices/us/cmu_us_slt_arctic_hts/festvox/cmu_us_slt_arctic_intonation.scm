@@ -31,25 +31,24 @@
 ;;;                                                                     ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
-;;; POS tagger for English
+;;; Intonation for English
 ;;;
 
 ;;; Load any necessary files here
-(require 'pos)
+(require 'tobi)
 
-(define (cmu_us_slt_arctic::select_tagger)
-  "(cmu_us_slt_arctic::select_tagger)
-Set up the POS tagger English."
-  (set! pos_lex_name "english_poslex")
-  (set! pos_ngram_name 'english_pos_ngram)
-  (set! pos_supported t)
-  (set! guess_pos english_guess_pos)   ;; need this for accents
+(define (cmu_us_slt_arctic::select_intonation)
+  "(cmu_us_slt_arctic::select_intonation)
+Set up intonation for English."
+  (set! int_tone_cart_tree f2b_int_tone_cart_tree)
+  (set! int_accent_cart_tree f2b_int_accent_cart_tree)
+  (Parameter.set 'Int_Method Intonation_Tree)
 )
 
-(define (cmu_us_slt_arctic::reset_tagger)
-  "(cmu_us_slt_arctic::reset_tagger)
-Reset tagging information."
+(define (cmu_us_slt_arctic::reset_intonation)
+  "(cmu_us_slt_arctic::reset_intonation)
+Reset intonation information."
   t
 )
 
-(provide 'cmu_us_slt_arctic_tagger)
+(provide 'cmu_us_slt_arctic_intonation)

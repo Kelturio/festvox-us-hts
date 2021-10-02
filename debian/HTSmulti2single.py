@@ -90,8 +90,8 @@ def main():
         stream_types=['MCP','LF0','LPF']
         stream_types_file=['mgc','lf0','lpf']
     else:
-        stream_types=['MCP','LF0']
-        stream_types_file=['mgc','lf0']
+        stream_types=['MCEP','LF0']
+        stream_types_file=['mcep','lf0']
 
     num_stream_types=len(stream_types)
 
@@ -127,13 +127,13 @@ def main():
 # Duration files processing
 
 # find the number of trees in duration
-    fname = os.path.join(dirname,'tree-dur.inf')
+    fname = os.path.join(dirname,'trees-dur.inf')
     ntree = number_of_trees(fname)
 
 # buffer into memory duration pdf file
-    fname = os.path.join(dirname,"dur.pdf")
+    fname = os.path.join(dirname,"duration.pdf")
     if os.path.isfile(fname) != True:
-        print('Error: unable to find dur.pdf')
+        print('Error: unable to find duration.pdf')
         exit(1)
     with open(fname, 'rb') as fp:
         msd = struct.unpack('>i',fp.read(size_of_int))[0]
@@ -160,8 +160,8 @@ def main():
     p_data_seg += ntree*size_of_int + len(pdf_out_data)*size_of_float
     dur_end = p_data_seg-1
 
-# write out tree-dur.inf
-    tree_file = os.path.join(dirname,'tree-dur.inf')
+# write out trees-dur.inf
+    tree_file = os.path.join(dirname,'trees-dur.inf')
     with open(tree_file, 'rb') as fp:
         treedata = fp.read()
     data_seg = data_seg + treedata
@@ -198,7 +198,7 @@ def main():
     stream_vector_length = []
 
     for i in range(num_stream_types):
-        fname=os.path.join(dirname,'tree-'+stream_types_file[i]+'.inf')
+        fname=os.path.join(dirname,'trees-'+stream_types_file[i]+'.inf')
         ntree=number_of_trees(fname)
 
         fname=os.path.join(dirname,stream_types_file[i]+'.pdf')
@@ -233,7 +233,7 @@ def main():
 
 # write out stream tree files
     for i in range(num_stream_types):
-        tree_file = os.path.join(dirname,'tree-'+stream_types_file[i]+'.inf')
+        tree_file = os.path.join(dirname,'trees-'+stream_types_file[i]+'.inf')
         with open(tree_file, 'rb') as fp:
             treedata = fp.read()
         data_seg = data_seg + treedata
@@ -250,7 +250,7 @@ def main():
 
     for i in range(num_stream_types):
         if use_gv[i] == 1:
-            fname=os.path.join(dirname,'tree-gv-'+stream_types_file[i]+'.inf')
+            fname=os.path.join(dirname,'trees-gv-'+stream_types_file[i]+'.inf')
             ntree=number_of_trees(fname)
 
             fname=os.path.join(dirname,'gv-'+stream_types_file[i]+'.pdf')
@@ -286,7 +286,7 @@ def main():
 # write out gv tree files
     for i in range(num_stream_types):
         if use_gv[i] == 1:
-            tree_file = os.path.join(dirname,'tree-gv-'+stream_types_file[i]+'.inf')
+            tree_file = os.path.join(dirname,'trees-gv-'+stream_types_file[i]+'.inf')
             with open(tree_file, 'rb') as fp:
                 treedata = fp.read()
             data_seg = data_seg + treedata

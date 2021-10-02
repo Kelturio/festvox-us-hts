@@ -31,25 +31,25 @@
 ;;;                                                                     ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
-;;; POS tagger for English
+;;; Duration for English
 ;;;
 
 ;;; Load any necessary files here
-(require 'pos)
+(require 'cmu_us_slt_arctic_durdata)
 
-(define (cmu_us_slt_arctic::select_tagger)
-  "(cmu_us_slt_arctic::select_tagger)
-Set up the POS tagger English."
-  (set! pos_lex_name "english_poslex")
-  (set! pos_ngram_name 'english_pos_ngram)
-  (set! pos_supported t)
-  (set! guess_pos english_guess_pos)   ;; need this for accents
+(define (cmu_us_slt_arctic::select_duration)
+  "(cmu_us_slt_arctic::select_duration)
+Set up duration for English."
+  (set! duration_cart_tree cmu_us_slt_arctic::zdur_tree)
+  (set! duration_ph_info cmu_us_slt_arctic::phone_durs)
+  (Parameter.set 'Duration_Method 'Tree_ZScores)
+  (Parameter.set 'Duration_Stretch 1.0)
 )
 
-(define (cmu_us_slt_arctic::reset_tagger)
-  "(cmu_us_slt_arctic::reset_tagger)
-Reset tagging information."
+(define (cmu_us_slt_arctic::reset_duration)
+  "(cmu_us_slt_arctic::reset_duration)
+Reset duration information."
   t
 )
 
-(provide 'cmu_us_slt_arctic_tagger)
+(provide 'cmu_us_slt_arctic_duration)

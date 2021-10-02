@@ -31,25 +31,23 @@
 ;;;                                                                     ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
-;;; POS tagger for English
+;;; Phonset for US English
+;;; uses festival/lib/radio_phones.scm
 ;;;
 
-;;; Load any necessary files here
-(require 'pos)
+(require 'radio_phones)
 
-(define (cmu_us_slt_arctic::select_tagger)
-  "(cmu_us_slt_arctic::select_tagger)
-Set up the POS tagger English."
-  (set! pos_lex_name "english_poslex")
-  (set! pos_ngram_name 'english_pos_ngram)
-  (set! pos_supported t)
-  (set! guess_pos english_guess_pos)   ;; need this for accents
+(define (cmu_us_slt_arctic::select_phoneset)
+  "(cmu_us_slt_arctic::select_phoneset)
+Set up phone set for US English."
+  (Parameter.set 'PhoneSet 'radio)
+  (PhoneSet.select 'radio)
 )
 
-(define (cmu_us_slt_arctic::reset_tagger)
-  "(cmu_us_slt_arctic::reset_tagger)
-Reset tagging information."
+(define (cmu_us_slt_arctic::reset_phoneset)
+  "(cmu_us_slt_arctic::reset_phoneset)
+Reset phone set for US English."
   t
 )
 
-(provide 'cmu_us_slt_arctic_tagger)
+(provide 'cmu_us_slt_arctic_phoneset)

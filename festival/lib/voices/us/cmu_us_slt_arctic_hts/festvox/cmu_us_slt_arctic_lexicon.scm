@@ -31,25 +31,27 @@
 ;;;                                                                     ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
-;;; POS tagger for English
+;;; CMU lexicon for US English
 ;;;
 
 ;;; Load any necessary files here
-(require 'pos)
+(require 'postlex)
+(setup_cmu_lex)
 
-(define (cmu_us_slt_arctic::select_tagger)
-  "(cmu_us_slt_arctic::select_tagger)
-Set up the POS tagger English."
-  (set! pos_lex_name "english_poslex")
-  (set! pos_ngram_name 'english_pos_ngram)
-  (set! pos_supported t)
-  (set! guess_pos english_guess_pos)   ;; need this for accents
+(define (cmu_us_slt_arctic::select_lexicon)
+  "(cmu_us_slt_arctic::select_lexicon)
+Set up the CMU lexicon for US English."
+  (lex.select "cmu")
+
+  ;; Post lexical rules
+  (set! postlex_rules_hooks (list postlex_apos_s_check))
+  (set! postlex_vowel_reduce_cart_tree nil) ; no reduction
 )
 
-(define (cmu_us_slt_arctic::reset_tagger)
-  "(cmu_us_slt_arctic::reset_tagger)
-Reset tagging information."
+(define (cmu_us_slt_arctic::reset_lexicon)
+  "(cmu_us_slt_arctic::reset_lexicon)
+Reset lexicon information."
   t
 )
 
-(provide 'cmu_us_slt_arctic_tagger)
+(provide 'cmu_us_slt_arctic_lexicon)

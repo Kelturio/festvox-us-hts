@@ -31,25 +31,38 @@
 ;;;                                                                     ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
-;;; POS tagger for English
+;;; Tokenizer for US English (standard in festival distribution)
 ;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;; Load any necessary files here
-(require 'pos)
+;;; Load any require files
+; None required for English
 
-(define (cmu_us_slt_arctic::select_tagger)
-  "(cmu_us_slt_arctic::select_tagger)
-Set up the POS tagger English."
-  (set! pos_lex_name "english_poslex")
-  (set! pos_ngram_name 'english_pos_ngram)
-  (set! pos_supported t)
-  (set! guess_pos english_guess_pos)   ;; need this for accents
+;;; Voice specific token_to_word rules (you may not need to change this)
+(define (cmu_us_slt_arctic::token_to_words token name)
+  "(cmu_us_slt_arctic::token_to_words token name)
+Specific token to word rules for the voice cmu_us_slt_arctic.  Returns a list
+of words that expand given token with name."
+  (cond
+   ;; voice specific token to word rules
+   (t ;; when no specific rules apply do the general ones
+    (english_token_to_words token name))))
+
+(define (cmu_us_slt_arctic::select_tokenizer)
+  "(cmu_us_slt_arctic::select_tokenizer)
+Set up tokenizer for US English."
+  (Parameter.set 'Language 'americanenglish)
+
+  (set! token_to_words cmu_us_slt_arctic::token_to_words)
 )
 
-(define (cmu_us_slt_arctic::reset_tagger)
-  "(cmu_us_slt_arctic::reset_tagger)
-Reset tagging information."
+(define (cmu_us_slt_arctic::reset_tokenizer)
+  "(cmu_us_slt_arctic::reset_tokenizer)
+Reset any globals modified for this voice.  Called by 
+(cmu_us_slt_arctic::voice_reset)."
+  ;; None
+
   t
 )
 
-(provide 'cmu_us_slt_arctic_tagger)
+(provide 'cmu_us_slt_arctic_tokenizer)

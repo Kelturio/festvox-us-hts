@@ -31,25 +31,35 @@
 ;;;                                                                     ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
-;;; POS tagger for English
+;;; F0 model for English
 ;;;
 
 ;;; Load any necessary files here
-(require 'pos)
+(require 'f2bf0lr)
 
-(define (cmu_us_slt_arctic::select_tagger)
-  "(cmu_us_slt_arctic::select_tagger)
-Set up the POS tagger English."
-  (set! pos_lex_name "english_poslex")
-  (set! pos_ngram_name 'english_pos_ngram)
-  (set! pos_supported t)
-  (set! guess_pos english_guess_pos)   ;; need this for accents
+(set! cmu_us_slt_arctic_int_lr_params
+      '(
+	;; These numbers may be modified the speakers range.
+	(target_f0_mean 165)   ;; speaker's mean F0
+	(target_f0_std 34)     ;; speaker's range
+	;; These number should remain as they are
+	(model_f0_mean 170)
+	(model_f0_std 34)))
+
+(define (cmu_us_slt_arctic::select_f0model)
+  "(cmu_us_slt_arctic::select_f0model)
+Set up the F0 model for English."
+  (set! f0_lr_start f2b_f0_lr_start)
+  (set! f0_lr_mid f2b_f0_lr_mid)
+  (set! f0_lr_end f2b_f0_lr_end)
+  (set! int_lr_params cmu_us_slt_arctic_int_lr_params)
+  (Parameter.set 'Int_Target_Method Int_Targets_LR)
 )
 
-(define (cmu_us_slt_arctic::reset_tagger)
-  "(cmu_us_slt_arctic::reset_tagger)
-Reset tagging information."
+(define (cmu_us_slt_arctic::reset_f0model)
+  "(cmu_us_slt_arctic::reset_f0model)
+Reset F0 model information."
   t
 )
 
-(provide 'cmu_us_slt_arctic_tagger)
+(provide 'cmu_us_slt_arctic_f0model)
